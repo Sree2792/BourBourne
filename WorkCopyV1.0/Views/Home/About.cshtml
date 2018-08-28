@@ -1,18 +1,25 @@
 ﻿@{
     ViewBag.Title = "About";
 }
-
-<div class="row tileDS">
-    <div class="col-sm-8 col-sm-offset-2">
+<style>
+    .tileDS {
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
+        padding: 0px !important;
+    }
+</style>
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-2 tileDS" id="map" style="height:600px;">
 
     </div>
 </div>
-<div class="row tileDS">
+<div class="row">
 
 </div>
-<div id='map' style='width: 400px; height: 300px;'></div>
+
 <script>
-mapboxgl.accessToken = 'pk.eyJ1Ijoic3JlZTI3OTIiLCJhIjoiY2pmdzRrN3E3MDdiMzJ4bzhzOGU0MHF2ayJ9.HFSAxgCzW06pY-q3PM_fSg';
+
+    mapboxgl.accessToken = 'pk.eyJ1Ijoic3JlZTI3OTIiLCJhIjoiY2pmdzRrN3E3MDdiMzJ4bzhzOGU0MHF2ayJ9.HFSAxgCzW06pY-q3PM_fSg';
+
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v10',

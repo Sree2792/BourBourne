@@ -1,0 +1,789 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FitBourneDBV1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="FitBourneDBV1StoreContainer">
+    <EntitySet Name="FitnessClubs" EntityType="FitBourneDBV1.Store.FitnessClubs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AddressTables" EntityType="FitBourneDBV1.Store.AddressTables" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MemberTables" EntityType="FitBourneDBV1.Store.MemberTables" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LocationTables" EntityType="FitBourneDBV1.Store.LocationTables" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EventTables" EntityType="FitBourneDBV1.Store.EventTables" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EventMembers" EntityType="FitBourneDBV1.Store.EventMembers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EventLocations" EntityType="FitBourneDBV1.Store.EventLocations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EventForEdits" EntityType="FitBourneDBV1.Store.EventForEdits" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Notifications" EntityType="FitBourneDBV1.Store.Notifications" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NotifForMembers" EntityType="FitBourneDBV1.Store.NotifForMembers" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="MemberTableFitnessClub" Association="FitBourneDBV1.Store.MemberTableFitnessClub">
+      <End Role="MemberTable" EntitySet="MemberTables" />
+      <End Role="FitnessClub" EntitySet="FitnessClubs" />
+    </AssociationSet>
+    <AssociationSet Name="FitnessClubAddress" Association="FitBourneDBV1.Store.FitnessClubAddress">
+      <End Role="FitnessClub" EntitySet="FitnessClubs" />
+      <End Role="AddressTable" EntitySet="AddressTables" />
+    </AssociationSet>
+    <AssociationSet Name="LocationTableAddressTable" Association="FitBourneDBV1.Store.LocationTableAddressTable">
+      <End Role="LocationTable" EntitySet="LocationTables" />
+      <End Role="AddressTable" EntitySet="AddressTables" />
+    </AssociationSet>
+    <AssociationSet Name="MemberTableAddressTable" Association="FitBourneDBV1.Store.MemberTableAddressTable">
+      <End Role="MemberTable" EntitySet="MemberTables" />
+      <End Role="AddressTable" EntitySet="AddressTables" />
+    </AssociationSet>
+    <AssociationSet Name="EventMemberMemberTable" Association="FitBourneDBV1.Store.EventMemberMemberTable">
+      <End Role="EventMember" EntitySet="EventMembers" />
+      <End Role="MemberTable" EntitySet="MemberTables" />
+    </AssociationSet>
+    <AssociationSet Name="EventMemberEventTable" Association="FitBourneDBV1.Store.EventMemberEventTable">
+      <End Role="EventMember" EntitySet="EventMembers" />
+      <End Role="EventTable" EntitySet="EventTables" />
+    </AssociationSet>
+    <AssociationSet Name="EventTableEventLocation" Association="FitBourneDBV1.Store.EventTableEventLocation">
+      <End Role="EventLocation" EntitySet="EventLocations" />
+      <End Role="EventTable" EntitySet="EventTables" />
+    </AssociationSet>
+    <AssociationSet Name="EventLocationLocationTable" Association="FitBourneDBV1.Store.EventLocationLocationTable">
+      <End Role="EventLocation" EntitySet="EventLocations" />
+      <End Role="LocationTable" EntitySet="LocationTables" />
+    </AssociationSet>
+    <AssociationSet Name="EventForEditEventLocation" Association="FitBourneDBV1.Store.EventForEditEventLocation">
+      <End Role="EventForEdit" EntitySet="EventForEdits" />
+      <End Role="EventLocation" EntitySet="EventLocations" />
+    </AssociationSet>
+    <AssociationSet Name="NotificationEventForEdit" Association="FitBourneDBV1.Store.NotificationEventForEdit">
+      <End Role="Notification" EntitySet="Notifications" />
+      <End Role="EventForEdit" EntitySet="EventForEdits" />
+    </AssociationSet>
+    <AssociationSet Name="Notification_For_Event" Association="FitBourneDBV1.Store.Notification_For_Event">
+      <End Role="NotifForMembers" EntitySet="NotifForMembers" />
+      <End Role="Notification" EntitySet="Notifications" />
+    </AssociationSet>
+    <AssociationSet Name="NotifForMembersMemberTable" Association="FitBourneDBV1.Store.NotifForMembersMemberTable">
+      <End Role="NotifForMembers" EntitySet="NotifForMembers" />
+      <End Role="MemberTable" EntitySet="MemberTables" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="FitnessClubs">
+    <Key>
+      <PropertyRef Name="Fit_Id" />
+    </Key>
+    <Property Name="Fit_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Fit_Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Fit_Lat" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Fit_Long" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Fit_Addr_Id" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Fit_Admin_Id" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AddressTable_Addr_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AddressTables">
+    <Key>
+      <PropertyRef Name="Addr_Id" />
+    </Key>
+    <Property Name="Addr_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Addr_Unit_No" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Addr_House_No" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Addr_Street_Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Addr_Suburb_Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Addr_City_Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Addr_State_Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Addr_ZipCode" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MemberTables">
+    <Key>
+      <PropertyRef Name="Mem_Id" />
+    </Key>
+    <Property Name="Mem_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Mem_Cntct_No" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Mem_Email_Id" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Mem_LoginId" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FitnessClubFit_Id" Type="int" Nullable="false" />
+    <Property Name="Mem_Addr_Id" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AddressTable_Addr_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LocationTables">
+    <Key>
+      <PropertyRef Name="Loc_Id" />
+    </Key>
+    <Property Name="Loc_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Loc_Lat" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Loc_Long" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Loc_Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Loc_Addr_Id" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AddressTable_Addr_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EventTables">
+    <Key>
+      <PropertyRef Name="Event_Id" />
+    </Key>
+    <Property Name="Event_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Event_Type" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Event_Is_Private" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Event_DateTime" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Event_Is_CheckIn" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Event_Capacity" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Event_Owner" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EventMembers">
+    <Key>
+      <PropertyRef Name="EventMember_Id" />
+    </Key>
+    <Property Name="EventMember_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MemberTableMem_Id" Type="int" Nullable="false" />
+    <Property Name="EventTableEvent_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EventLocations">
+    <Key>
+      <PropertyRef Name="Event_Loc_Id" />
+    </Key>
+    <Property Name="Event_Loc_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EventTableEvent_Id" Type="int" Nullable="false" />
+    <Property Name="LocationTableLoc_Id" Type="int" Nullable="false" />
+    <Property Name="EventForEditEdit_Event_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EventForEdits">
+    <Key>
+      <PropertyRef Name="Edit_Event_Id" />
+    </Key>
+    <Property Name="Edit_Event_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Org_Event_Id" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Edit_Req_DateTime" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Created_By" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Status" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Notifications">
+    <Key>
+      <PropertyRef Name="Notif_Id" />
+    </Key>
+    <Property Name="Notif_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Notif_For_Event" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Event" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EventForEdit_Edit_Event_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NotifForMembers">
+    <Key>
+      <PropertyRef Name="NFM_Id" />
+    </Key>
+    <Property Name="NFM_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NotificationNotif_Id" Type="int" Nullable="false" />
+    <Property Name="Member_Response" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MemberTableMem_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="MemberTableFitnessClub">
+    <End Role="MemberTable" Type="FitBourneDBV1.Store.MemberTables" Multiplicity="*" />
+    <End Role="FitnessClub" Type="FitBourneDBV1.Store.FitnessClubs" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="FitnessClub">
+        <PropertyRef Name="Fit_Id" />
+      </Principal>
+      <Dependent Role="MemberTable">
+        <PropertyRef Name="FitnessClubFit_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FitnessClubAddress">
+    <End Role="FitnessClub" Type="FitBourneDBV1.Store.FitnessClubs" Multiplicity="*" />
+    <End Role="AddressTable" Type="FitBourneDBV1.Store.AddressTables" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="AddressTable">
+        <PropertyRef Name="Addr_Id" />
+      </Principal>
+      <Dependent Role="FitnessClub">
+        <PropertyRef Name="AddressTable_Addr_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LocationTableAddressTable">
+    <End Role="LocationTable" Type="FitBourneDBV1.Store.LocationTables" Multiplicity="*" />
+    <End Role="AddressTable" Type="FitBourneDBV1.Store.AddressTables" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="AddressTable">
+        <PropertyRef Name="Addr_Id" />
+      </Principal>
+      <Dependent Role="LocationTable">
+        <PropertyRef Name="AddressTable_Addr_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MemberTableAddressTable">
+    <End Role="MemberTable" Type="FitBourneDBV1.Store.MemberTables" Multiplicity="*" />
+    <End Role="AddressTable" Type="FitBourneDBV1.Store.AddressTables" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="AddressTable">
+        <PropertyRef Name="Addr_Id" />
+      </Principal>
+      <Dependent Role="MemberTable">
+        <PropertyRef Name="AddressTable_Addr_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EventMemberMemberTable">
+    <End Role="EventMember" Type="FitBourneDBV1.Store.EventMembers" Multiplicity="*" />
+    <End Role="MemberTable" Type="FitBourneDBV1.Store.MemberTables" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="MemberTable">
+        <PropertyRef Name="Mem_Id" />
+      </Principal>
+      <Dependent Role="EventMember">
+        <PropertyRef Name="MemberTableMem_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EventMemberEventTable">
+    <End Role="EventMember" Type="FitBourneDBV1.Store.EventMembers" Multiplicity="*" />
+    <End Role="EventTable" Type="FitBourneDBV1.Store.EventTables" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="EventTable">
+        <PropertyRef Name="Event_Id" />
+      </Principal>
+      <Dependent Role="EventMember">
+        <PropertyRef Name="EventTableEvent_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EventTableEventLocation">
+    <End Role="EventLocation" Type="FitBourneDBV1.Store.EventLocations" Multiplicity="*" />
+    <End Role="EventTable" Type="FitBourneDBV1.Store.EventTables" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="EventTable">
+        <PropertyRef Name="Event_Id" />
+      </Principal>
+      <Dependent Role="EventLocation">
+        <PropertyRef Name="EventTableEvent_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EventLocationLocationTable">
+    <End Role="EventLocation" Type="FitBourneDBV1.Store.EventLocations" Multiplicity="*" />
+    <End Role="LocationTable" Type="FitBourneDBV1.Store.LocationTables" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="LocationTable">
+        <PropertyRef Name="Loc_Id" />
+      </Principal>
+      <Dependent Role="EventLocation">
+        <PropertyRef Name="LocationTableLoc_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EventForEditEventLocation">
+    <End Role="EventForEdit" Type="FitBourneDBV1.Store.EventForEdits" Multiplicity="1" />
+    <End Role="EventLocation" Type="FitBourneDBV1.Store.EventLocations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EventForEdit">
+        <PropertyRef Name="Edit_Event_Id" />
+      </Principal>
+      <Dependent Role="EventLocation">
+        <PropertyRef Name="EventForEditEdit_Event_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NotificationEventForEdit">
+    <End Role="Notification" Type="FitBourneDBV1.Store.Notifications" Multiplicity="*" />
+    <End Role="EventForEdit" Type="FitBourneDBV1.Store.EventForEdits" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="EventForEdit">
+        <PropertyRef Name="Edit_Event_Id" />
+      </Principal>
+      <Dependent Role="Notification">
+        <PropertyRef Name="EventForEdit_Edit_Event_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Notification_For_Event">
+    <End Role="NotifForMembers" Type="FitBourneDBV1.Store.NotifForMembers" Multiplicity="*" />
+    <End Role="Notification" Type="FitBourneDBV1.Store.Notifications" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Notification">
+        <PropertyRef Name="Notif_Id" />
+      </Principal>
+      <Dependent Role="NotifForMembers">
+        <PropertyRef Name="NotificationNotif_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NotifForMembersMemberTable">
+    <End Role="NotifForMembers" Type="FitBourneDBV1.Store.NotifForMembers" Multiplicity="*" />
+    <End Role="MemberTable" Type="FitBourneDBV1.Store.MemberTables" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="MemberTable">
+        <PropertyRef Name="Mem_Id" />
+      </Principal>
+      <Dependent Role="NotifForMembers">
+        <PropertyRef Name="MemberTableMem_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="FitBourneDBV1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="FitBourneDBV1Container" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FitnessClubs" EntityType="FitBourneDBV1.FitnessClub" />
+          <EntitySet Name="AddressTables" EntityType="FitBourneDBV1.AddressTable" />
+          <EntitySet Name="MemberTables" EntityType="FitBourneDBV1.MemberTable" />
+          <AssociationSet Name="MemberTableFitnessClub" Association="FitBourneDBV1.MemberTableFitnessClub">
+            <End Role="MemberTable" EntitySet="MemberTables" />
+            <End Role="FitnessClub" EntitySet="FitnessClubs" />
+          </AssociationSet>
+          <AssociationSet Name="FitnessClubAddress" Association="FitBourneDBV1.FitnessClubAddress">
+            <End Role="FitnessClub" EntitySet="FitnessClubs" />
+            <End Role="AddressTable" EntitySet="AddressTables" />
+          </AssociationSet>
+          <EntitySet Name="LocationTables" EntityType="FitBourneDBV1.LocationTable" />
+          <AssociationSet Name="LocationTableAddressTable" Association="FitBourneDBV1.LocationTableAddressTable">
+            <End Role="LocationTable" EntitySet="LocationTables" />
+            <End Role="AddressTable" EntitySet="AddressTables" />
+          </AssociationSet>
+          <EntitySet Name="EventTables" EntityType="FitBourneDBV1.EventTable" />
+          <AssociationSet Name="MemberTableAddressTable" Association="FitBourneDBV1.MemberTableAddressTable">
+            <End Role="MemberTable" EntitySet="MemberTables" />
+            <End Role="AddressTable" EntitySet="AddressTables" />
+          </AssociationSet>
+          <EntitySet Name="EventMembers" EntityType="FitBourneDBV1.EventMember" />
+          <AssociationSet Name="EventMemberMemberTable" Association="FitBourneDBV1.EventMemberMemberTable">
+            <End Role="EventMember" EntitySet="EventMembers" />
+            <End Role="MemberTable" EntitySet="MemberTables" />
+          </AssociationSet>
+          <AssociationSet Name="EventMemberEventTable" Association="FitBourneDBV1.EventMemberEventTable">
+            <End Role="EventMember" EntitySet="EventMembers" />
+            <End Role="EventTable" EntitySet="EventTables" />
+          </AssociationSet>
+          <EntitySet Name="EventLocations" EntityType="FitBourneDBV1.EventLocation" />
+          <AssociationSet Name="EventTableEventLocation" Association="FitBourneDBV1.EventTableEventLocation">
+            <End Role="EventLocation" EntitySet="EventLocations" />
+            <End Role="EventTable" EntitySet="EventTables" />
+          </AssociationSet>
+          <AssociationSet Name="EventLocationLocationTable" Association="FitBourneDBV1.EventLocationLocationTable">
+            <End Role="EventLocation" EntitySet="EventLocations" />
+            <End Role="LocationTable" EntitySet="LocationTables" />
+          </AssociationSet>
+          <EntitySet Name="EventForEdits" EntityType="FitBourneDBV1.EventForEdit" />
+          <AssociationSet Name="EventForEditEventLocation" Association="FitBourneDBV1.EventForEditEventLocation">
+            <End Role="EventForEdit" EntitySet="EventForEdits" />
+            <End Role="EventLocation" EntitySet="EventLocations" />
+          </AssociationSet>
+          <EntitySet Name="Notifications" EntityType="FitBourneDBV1.Notification" />
+          <AssociationSet Name="NotificationEventForEdit" Association="FitBourneDBV1.NotificationEventForEdit">
+            <End Role="Notification" EntitySet="Notifications" />
+            <End Role="EventForEdit" EntitySet="EventForEdits" />
+          </AssociationSet>
+          <EntitySet Name="NotifForMembers" EntityType="FitBourneDBV1.NotifForMembers" />
+          <AssociationSet Name="Notification_For_Event" Association="FitBourneDBV1.Notification_For_Event">
+            <End Role="NotifForMembers" EntitySet="NotifForMembers" />
+            <End Role="Notification" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="NotifForMembersMemberTable" Association="FitBourneDBV1.NotifForMembersMemberTable">
+            <End Role="NotifForMembers" EntitySet="NotifForMembers" />
+            <End Role="MemberTable" EntitySet="MemberTables" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="FitnessClub">
+          <Key>
+            <PropertyRef Name="Fit_Id" />
+          </Key>
+          <Property Name="Fit_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fit_Name" Type="String" Nullable="false" />
+          <Property Name="Fit_Lat" Type="String" Nullable="false" />
+          <Property Name="Fit_Long" Type="String" Nullable="false" />
+          <Property Name="Fit_Addr_Id" Type="String" Nullable="false" />
+          <Property Name="Fit_Admin_Id" Type="String" Nullable="false" />
+          <NavigationProperty Name="MemberTables" Relationship="FitBourneDBV1.MemberTableFitnessClub" FromRole="FitnessClub" ToRole="MemberTable" />
+          <NavigationProperty Name="AddressTable" Relationship="FitBourneDBV1.FitnessClubAddress" FromRole="FitnessClub" ToRole="AddressTable" />
+        </EntityType>
+        <EntityType Name="AddressTable">
+          <Key>
+            <PropertyRef Name="Addr_Id" />
+          </Key>
+          <Property Name="Addr_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Addr_Unit_No" Type="String" Nullable="false" />
+          <Property Name="Addr_House_No" Type="String" Nullable="false" />
+          <Property Name="Addr_Street_Name" Type="String" Nullable="false" />
+          <Property Name="Addr_Suburb_Name" Type="String" Nullable="false" />
+          <Property Name="Addr_City_Name" Type="String" Nullable="false" />
+          <Property Name="Addr_State_Name" Type="String" Nullable="false" />
+          <Property Name="Addr_ZipCode" Type="String" Nullable="false" />
+          <NavigationProperty Name="FitnessClub" Relationship="FitBourneDBV1.FitnessClubAddress" FromRole="AddressTable" ToRole="FitnessClub" />
+          <NavigationProperty Name="LocationTable" Relationship="FitBourneDBV1.LocationTableAddressTable" FromRole="AddressTable" ToRole="LocationTable" />
+          <NavigationProperty Name="MemberTable" Relationship="FitBourneDBV1.MemberTableAddressTable" FromRole="AddressTable" ToRole="MemberTable" />
+        </EntityType>
+        <EntityType Name="MemberTable">
+          <Key>
+            <PropertyRef Name="Mem_Id" />
+          </Key>
+          <Property Name="Mem_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mem_Cntct_No" Type="String" Nullable="false" />
+          <Property Name="Mem_Email_Id" Type="String" Nullable="false" />
+          <Property Name="Mem_LoginId" Type="String" Nullable="false" />
+          <NavigationProperty Name="FitnessClub" Relationship="FitBourneDBV1.MemberTableFitnessClub" FromRole="MemberTable" ToRole="FitnessClub" />
+          <Property Name="FitnessClubFit_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AddressTable" Relationship="FitBourneDBV1.MemberTableAddressTable" FromRole="MemberTable" ToRole="AddressTable" />
+          <Property Name="Mem_Addr_Id" Type="String" Nullable="false" />
+          <NavigationProperty Name="EventMembers" Relationship="FitBourneDBV1.EventMemberMemberTable" FromRole="MemberTable" ToRole="EventMember" />
+          <NavigationProperty Name="NotifForMembers" Relationship="FitBourneDBV1.NotifForMembersMemberTable" FromRole="MemberTable" ToRole="NotifForMembers" />
+        </EntityType>
+        <Association Name="MemberTableFitnessClub">
+          <End Type="FitBourneDBV1.MemberTable" Role="MemberTable" Multiplicity="*" />
+          <End Type="FitBourneDBV1.FitnessClub" Role="FitnessClub" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="FitnessClub">
+              <PropertyRef Name="Fit_Id" />
+            </Principal>
+            <Dependent Role="MemberTable">
+              <PropertyRef Name="FitnessClubFit_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FitnessClubAddress">
+          <End Type="FitBourneDBV1.FitnessClub" Role="FitnessClub" Multiplicity="1" />
+          <End Type="FitBourneDBV1.AddressTable" Role="AddressTable" Multiplicity="1" />
+        </Association>
+        <EntityType Name="LocationTable">
+          <Key>
+            <PropertyRef Name="Loc_Id" />
+          </Key>
+          <Property Name="Loc_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Loc_Lat" Type="String" Nullable="false" />
+          <Property Name="Loc_Long" Type="String" Nullable="false" />
+          <Property Name="Loc_Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="AddressTable" Relationship="FitBourneDBV1.LocationTableAddressTable" FromRole="LocationTable" ToRole="AddressTable" />
+          <Property Name="Loc_Addr_Id" Type="String" Nullable="false" />
+          <NavigationProperty Name="EventLocations" Relationship="FitBourneDBV1.EventLocationLocationTable" FromRole="LocationTable" ToRole="EventLocation" />
+        </EntityType>
+        <Association Name="LocationTableAddressTable">
+          <End Type="FitBourneDBV1.LocationTable" Role="LocationTable" Multiplicity="1" />
+          <End Type="FitBourneDBV1.AddressTable" Role="AddressTable" Multiplicity="1" />
+        </Association>
+        <EntityType Name="EventTable">
+          <Key>
+            <PropertyRef Name="Event_Id" />
+          </Key>
+          <Property Name="Event_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Event_Type" Type="String" Nullable="false" />
+          <Property Name="Event_Is_Private" Type="String" Nullable="false" />
+          <Property Name="Event_DateTime" Type="String" Nullable="false" />
+          <Property Name="Event_Is_CheckIn" Type="String" Nullable="false" />
+          <Property Name="Event_Capacity" Type="String" Nullable="false" />
+          <NavigationProperty Name="EventMembers" Relationship="FitBourneDBV1.EventMemberEventTable" FromRole="EventTable" ToRole="EventMember" />
+          <NavigationProperty Name="EventLocations" Relationship="FitBourneDBV1.EventTableEventLocation" FromRole="EventTable" ToRole="EventLocation" />
+          <Property Name="Event_Owner" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="MemberTableAddressTable">
+          <End Type="FitBourneDBV1.MemberTable" Role="MemberTable" Multiplicity="1" />
+          <End Type="FitBourneDBV1.AddressTable" Role="AddressTable" Multiplicity="1" />
+        </Association>
+        <EntityType Name="EventMember">
+          <Key>
+            <PropertyRef Name="EventMember_Id" />
+          </Key>
+          <Property Name="EventMember_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="MemberTable" Relationship="FitBourneDBV1.EventMemberMemberTable" FromRole="EventMember" ToRole="MemberTable" />
+          <Property Name="MemberTableMem_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EventTable" Relationship="FitBourneDBV1.EventMemberEventTable" FromRole="EventMember" ToRole="EventTable" />
+          <Property Name="EventTableEvent_Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="EventMemberMemberTable">
+          <End Type="FitBourneDBV1.EventMember" Role="EventMember" Multiplicity="*" />
+          <End Type="FitBourneDBV1.MemberTable" Role="MemberTable" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="MemberTable">
+              <PropertyRef Name="Mem_Id" />
+            </Principal>
+            <Dependent Role="EventMember">
+              <PropertyRef Name="MemberTableMem_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EventMemberEventTable">
+          <End Type="FitBourneDBV1.EventMember" Role="EventMember" Multiplicity="*" />
+          <End Type="FitBourneDBV1.EventTable" Role="EventTable" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="EventTable">
+              <PropertyRef Name="Event_Id" />
+            </Principal>
+            <Dependent Role="EventMember">
+              <PropertyRef Name="EventTableEvent_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="EventLocation">
+          <Key>
+            <PropertyRef Name="Event_Loc_Id" />
+          </Key>
+          <Property Name="Event_Loc_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="EventTable" Relationship="FitBourneDBV1.EventTableEventLocation" FromRole="EventLocation" ToRole="EventTable" />
+          <Property Name="EventTableEvent_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="LocationTable" Relationship="FitBourneDBV1.EventLocationLocationTable" FromRole="EventLocation" ToRole="LocationTable" />
+          <Property Name="LocationTableLoc_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EventForEdit" Relationship="FitBourneDBV1.EventForEditEventLocation" FromRole="EventLocation" ToRole="EventForEdit" />
+          <Property Name="EventForEditEdit_Event_Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="EventTableEventLocation">
+          <End Type="FitBourneDBV1.EventLocation" Role="EventLocation" Multiplicity="*" />
+          <End Type="FitBourneDBV1.EventTable" Role="EventTable" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="EventTable">
+              <PropertyRef Name="Event_Id" />
+            </Principal>
+            <Dependent Role="EventLocation">
+              <PropertyRef Name="EventTableEvent_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EventLocationLocationTable">
+          <End Type="FitBourneDBV1.EventLocation" Role="EventLocation" Multiplicity="*" />
+          <End Type="FitBourneDBV1.LocationTable" Role="LocationTable" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="LocationTable">
+              <PropertyRef Name="Loc_Id" />
+            </Principal>
+            <Dependent Role="EventLocation">
+              <PropertyRef Name="LocationTableLoc_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="EventForEdit">
+          <Key>
+            <PropertyRef Name="Edit_Event_Id" />
+          </Key>
+          <Property Name="Edit_Event_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Org_Event_Id" Type="String" Nullable="false" />
+          <Property Name="Edit_Req_DateTime" Type="String" Nullable="false" />
+          <NavigationProperty Name="EventLocations" Relationship="FitBourneDBV1.EventForEditEventLocation" FromRole="EventForEdit" ToRole="EventLocation" />
+          <Property Name="Created_By" Type="String" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" />
+          <NavigationProperty Name="Notification" Relationship="FitBourneDBV1.NotificationEventForEdit" FromRole="EventForEdit" ToRole="Notification" />
+        </EntityType>
+        <Association Name="EventForEditEventLocation">
+          <End Type="FitBourneDBV1.EventForEdit" Role="EventForEdit" Multiplicity="1" />
+          <End Type="FitBourneDBV1.EventLocation" Role="EventLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventForEdit">
+              <PropertyRef Name="Edit_Event_Id" />
+            </Principal>
+            <Dependent Role="EventLocation">
+              <PropertyRef Name="EventForEditEdit_Event_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="Notif_Id" />
+          </Key>
+          <Property Name="Notif_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Notif_For_Event" Type="String" Nullable="false" />
+          <NavigationProperty Name="EventForEdit" Relationship="FitBourneDBV1.NotificationEventForEdit" FromRole="Notification" ToRole="EventForEdit" />
+          <NavigationProperty Name="NotifForMembers" Relationship="FitBourneDBV1.Notification_For_Event" FromRole="Notification" ToRole="NotifForMembers" />
+          <Property Name="Event" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="NotificationEventForEdit">
+          <End Type="FitBourneDBV1.Notification" Role="Notification" Multiplicity="1" />
+          <End Type="FitBourneDBV1.EventForEdit" Role="EventForEdit" Multiplicity="1" />
+        </Association>
+        <EntityType Name="NotifForMembers">
+          <Key>
+            <PropertyRef Name="NFM_Id" />
+          </Key>
+          <Property Name="NFM_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Notification" Relationship="FitBourneDBV1.Notification_For_Event" FromRole="NotifForMembers" ToRole="Notification" />
+          <Property Name="NotificationNotif_Id" Type="Int32" Nullable="false" />
+          <Property Name="Member_Response" Type="String" Nullable="false" />
+          <NavigationProperty Name="MemberTable" Relationship="FitBourneDBV1.NotifForMembersMemberTable" FromRole="NotifForMembers" ToRole="MemberTable" />
+          <Property Name="MemberTableMem_Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="Notification_For_Event">
+          <End Type="FitBourneDBV1.NotifForMembers" Role="NotifForMembers" Multiplicity="*" />
+          <End Type="FitBourneDBV1.Notification" Role="Notification" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Notification">
+              <PropertyRef Name="Notif_Id" />
+            </Principal>
+            <Dependent Role="NotifForMembers">
+              <PropertyRef Name="NotificationNotif_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="NotifForMembersMemberTable">
+          <End Type="FitBourneDBV1.NotifForMembers" Role="NotifForMembers" Multiplicity="*" />
+          <End Type="FitBourneDBV1.MemberTable" Role="MemberTable" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="MemberTable">
+              <PropertyRef Name="Mem_Id" />
+            </Principal>
+            <Dependent Role="NotifForMembers">
+              <PropertyRef Name="MemberTableMem_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FitBourneDBV1StoreContainer" CdmEntityContainer="FitBourneDBV1Container">
+    <EntitySetMapping Name="FitnessClubs">
+      <EntityTypeMapping TypeName="IsTypeOf(FitBourneDBV1.FitnessClub)">
+        <MappingFragment StoreEntitySet="FitnessClubs">
+          <ScalarProperty Name="Fit_Id" ColumnName="Fit_Id" />
+          <ScalarProperty Name="Fit_Name" ColumnName="Fit_Name" />
+          <ScalarProperty Name="Fit_Lat" ColumnName="Fit_Lat" />
+          <ScalarProperty Name="Fit_Long" ColumnName="Fit_Long" />
+          <ScalarProperty Name="Fit_Addr_Id" ColumnName="Fit_Addr_Id" />
+          <ScalarProperty Name="Fit_Admin_Id" ColumnName="Fit_Admin_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AddressTables">
+      <EntityTypeMapping TypeName="IsTypeOf(FitBourneDBV1.AddressTable)">
+        <MappingFragment StoreEntitySet="AddressTables">
+          <ScalarProperty Name="Addr_Id" ColumnName="Addr_Id" />
+          <ScalarProperty Name="Addr_Unit_No" ColumnName="Addr_Unit_No" />
+          <ScalarProperty Name="Addr_House_No" ColumnName="Addr_House_No" />
+          <ScalarProperty Name="Addr_Street_Name" ColumnName="Addr_Street_Name" />
+          <ScalarProperty Name="Addr_Suburb_Name" ColumnName="Addr_Suburb_Name" />
+          <ScalarProperty Name="Addr_City_Name" ColumnName="Addr_City_Name" />
+          <ScalarProperty Name="Addr_State_Name" ColumnName="Addr_State_Name" />
+          <ScalarProperty Name="Addr_ZipCode" ColumnName="Addr_ZipCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MemberTables">
+      <EntityTypeMapping TypeName="IsTypeOf(FitBourneDBV1.MemberTable)">
+        <MappingFragment StoreEntitySet="MemberTables">
+          <ScalarProperty Name="Mem_Id" ColumnName="Mem_Id" />
+          <ScalarProperty Name="Mem_Cntct_No" ColumnName="Mem_Cntct_No" />
+          <ScalarProperty Name="Mem_Email_Id" ColumnName="Mem_Email_Id" />
+          <ScalarProperty Name="Mem_LoginId" ColumnName="Mem_LoginId" />
+          <ScalarProperty Name="FitnessClubFit_Id" ColumnName="FitnessClubFit_Id" />
+          <ScalarProperty Name="Mem_Addr_Id" ColumnName="Mem_Addr_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LocationTables">
+      <EntityTypeMapping TypeName="IsTypeOf(FitBourneDBV1.LocationTable)">
+        <MappingFragment StoreEntitySet="LocationTables">
+          <ScalarProperty Name="Loc_Id" ColumnName="Loc_Id" />
+          <ScalarProperty Name="Loc_Lat" ColumnName="Loc_Lat" />
+          <ScalarProperty Name="Loc_Long" ColumnName="Loc_Long" />
+          <ScalarProperty Name="Loc_Name" ColumnName="Loc_Name" />
+          <ScalarProperty Name="Loc_Addr_Id" ColumnName="Loc_Addr_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EventTables">
+      <EntityTypeMapping TypeName="IsTypeOf(FitBourneDBV1.EventTable)">
+        <MappingFragment StoreEntitySet="EventTables">
+          <ScalarProperty Name="Event_Id" ColumnName="Event_Id" />
+          <ScalarProperty Name="Event_Type" ColumnName="Event_Type" />
+          <ScalarProperty Name="Event_Is_Private" ColumnName="Event_Is_Private" />
+          <ScalarProperty Name="Event_DateTime" ColumnName="Event_DateTime" />
+          <ScalarProperty Name="Event_Is_CheckIn" ColumnName="Event_Is_CheckIn" />
+          <ScalarProperty Name="Event_Capacity" ColumnName="Event_Capacity" />
+          <ScalarProperty Name="Event_Owner" ColumnName="Event_Owner" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EventMembers">
+      <EntityTypeMapping TypeName="IsTypeOf(FitBourneDBV1.EventMember)">
+        <MappingFragment StoreEntitySet="EventMembers">
+          <ScalarProperty Name="EventMember_Id" ColumnName="EventMember_Id" />
+          <ScalarProperty Name="MemberTableMem_Id" ColumnName="MemberTableMem_Id" />
+          <ScalarProperty Name="EventTableEvent_Id" ColumnName="EventTableEvent_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EventLocations">
+      <EntityTypeMapping TypeName="IsTypeOf(FitBourneDBV1.EventLocation)">
+        <MappingFragment StoreEntitySet="EventLocations">
+          <ScalarProperty Name="Event_Loc_Id" ColumnName="Event_Loc_Id" />
+          <ScalarProperty Name="EventTableEvent_Id" ColumnName="EventTableEvent_Id" />
+          <ScalarProperty Name="LocationTableLoc_Id" ColumnName="LocationTableLoc_Id" />
+          <ScalarProperty Name="EventForEditEdit_Event_Id" ColumnName="EventForEditEdit_Event_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EventForEdits">
+      <EntityTypeMapping TypeName="IsTypeOf(FitBourneDBV1.EventForEdit)">
+        <MappingFragment StoreEntitySet="EventForEdits">
+          <ScalarProperty Name="Edit_Event_Id" ColumnName="Edit_Event_Id" />
+          <ScalarProperty Name="Org_Event_Id" ColumnName="Org_Event_Id" />
+          <ScalarProperty Name="Edit_Req_DateTime" ColumnName="Edit_Req_DateTime" />
+          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notifications">
+      <EntityTypeMapping TypeName="IsTypeOf(FitBourneDBV1.Notification)">
+        <MappingFragment StoreEntitySet="Notifications">
+          <ScalarProperty Name="Notif_Id" ColumnName="Notif_Id" />
+          <ScalarProperty Name="Notif_For_Event" ColumnName="Notif_For_Event" />
+          <ScalarProperty Name="Event" ColumnName="Event" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NotifForMembers">
+      <EntityTypeMapping TypeName="IsTypeOf(FitBourneDBV1.NotifForMembers)">
+        <MappingFragment StoreEntitySet="NotifForMembers">
+          <ScalarProperty Name="NFM_Id" ColumnName="NFM_Id" />
+          <ScalarProperty Name="NotificationNotif_Id" ColumnName="NotificationNotif_Id" />
+          <ScalarProperty Name="Member_Response" ColumnName="Member_Response" />
+          <ScalarProperty Name="MemberTableMem_Id" ColumnName="MemberTableMem_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="FitnessClubAddress" TypeName="FitBourneDBV1.FitnessClubAddress" StoreEntitySet="FitnessClubs">
+      <EndProperty Name="AddressTable">
+        <ScalarProperty Name="Addr_Id" ColumnName="AddressTable_Addr_Id" />
+      </EndProperty>
+      <EndProperty Name="FitnessClub">
+        <ScalarProperty Name="Fit_Id" ColumnName="Fit_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="LocationTableAddressTable" TypeName="FitBourneDBV1.LocationTableAddressTable" StoreEntitySet="LocationTables">
+      <EndProperty Name="AddressTable">
+        <ScalarProperty Name="Addr_Id" ColumnName="AddressTable_Addr_Id" />
+      </EndProperty>
+      <EndProperty Name="LocationTable">
+        <ScalarProperty Name="Loc_Id" ColumnName="Loc_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="MemberTableAddressTable" TypeName="FitBourneDBV1.MemberTableAddressTable" StoreEntitySet="MemberTables">
+      <EndProperty Name="AddressTable">
+        <ScalarProperty Name="Addr_Id" ColumnName="AddressTable_Addr_Id" />
+      </EndProperty>
+      <EndProperty Name="MemberTable">
+        <ScalarProperty Name="Mem_Id" ColumnName="Mem_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="NotificationEventForEdit" TypeName="FitBourneDBV1.NotificationEventForEdit" StoreEntitySet="Notifications">
+      <EndProperty Name="EventForEdit">
+        <ScalarProperty Name="Edit_Event_Id" ColumnName="EventForEdit_Edit_Event_Id" />
+      </EndProperty>
+      <EndProperty Name="Notification">
+        <ScalarProperty Name="Notif_Id" ColumnName="Notif_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

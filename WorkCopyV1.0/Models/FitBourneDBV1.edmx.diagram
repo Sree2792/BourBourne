@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4532f69907824c1c86472a2442b0bac6" Name="Diagram1" >
+        <EntityTypeShape EntityType="FitBourneDBV1.FitnessClub" Width="1.5" PointX="2.375" PointY="1" />
+        <EntityTypeShape EntityType="FitBourneDBV1.AddressTable" Width="1.875" PointX="6.375" PointY="0.625" />
+        <EntityTypeShape EntityType="FitBourneDBV1.MemberTable" Width="1.5" PointX="2.625" PointY="4.625" />
+        <AssociationConnector Association="FitBourneDBV1.MemberTableFitnessClub" />
+        <AssociationConnector Association="FitBourneDBV1.FitnessClubAddress" />
+        <EntityTypeShape EntityType="FitBourneDBV1.LocationTable" Width="1.5" PointX="10.25" PointY="3.625" />
+        <AssociationConnector Association="FitBourneDBV1.LocationTableAddressTable" />
+        <EntityTypeShape EntityType="FitBourneDBV1.EventTable" Width="2" PointX="7.25" PointY="4.75" />
+        <AssociationConnector Association="FitBourneDBV1.MemberTableAddressTable" />
+        <EntityTypeShape EntityType="FitBourneDBV1.EventMember" Width="1.75" PointX="4.875" PointY="5.625" />
+        <AssociationConnector Association="FitBourneDBV1.EventMemberMemberTable" />
+        <AssociationConnector Association="FitBourneDBV1.EventMemberEventTable" />
+        <EntityTypeShape EntityType="FitBourneDBV1.EventLocation" Width="1.5" PointX="10.375" PointY="7.125" />
+        <AssociationConnector Association="FitBourneDBV1.EventTableEventLocation" />
+        <AssociationConnector Association="FitBourneDBV1.EventLocationLocationTable" />
+        <EntityTypeShape EntityType="FitBourneDBV1.EventForEdit" Width="1.5" PointX="7.5" PointY="9.25" />
+        <AssociationConnector Association="FitBourneDBV1.EventForEditEventLocation" />
+        <EntityTypeShape EntityType="FitBourneDBV1.Notification" Width="1.5" PointX="4.375" PointY="9.25" />
+        <AssociationConnector Association="FitBourneDBV1.NotificationEventForEdit" />
+        <EntityTypeShape EntityType="FitBourneDBV1.NotifForMembers" Width="1.75" PointX="1.75" PointY="8.5" />
+        <AssociationConnector Association="FitBourneDBV1.Notification_For_Event" />
+        <AssociationConnector Association="FitBourneDBV1.NotifForMembersMemberTable" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
