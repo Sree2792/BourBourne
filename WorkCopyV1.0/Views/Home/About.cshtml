@@ -1,7 +1,23 @@
 ﻿@{
     ViewBag.Title = "About";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<div class="row tileDS">
+    <div class="col-sm-8 col-sm-offset-2">
+
+    </div>
+</div>
+<div class="row tileDS">
+
+</div>
+<div id='map' style='width: 400px; height: 300px;'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoic3JlZTI3OTIiLCJhIjoiY2pmdzRrN3E3MDdiMzJ4bzhzOGU0MHF2ayJ9.HFSAxgCzW06pY-q3PM_fSg';
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v10',
+    center: [144.97, -37.84],
+    zoom: 9
+    });
+    map.addControl(new mapboxgl.NavigationControl());
+</script>
